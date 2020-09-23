@@ -6,35 +6,35 @@ import random
 class Susida():
     def __init__(self):
         pygame.init()
-        screen_size = (600,400)
+        screen_size = (600, 400)
         self.screen = pygame.display.set_mode(screen_size)
-        self.Main = Main_game(self.screen)
+        self.Main = MainGame(self.screen)
         
     def main(self):
         self.Main.main_game()
         
-class Main_game():
-    def __init__(self,screen):
+class MainGame():
+    def __init__(self, screen):
         self.screen = screen
-        self.font_susi = pygame.font.SysFont(None,70)
-        self.font_score = pygame.font.SysFont(None,30)
-        self.font_time = pygame.font.SysFont(None,50)
+        self.font_susi = pygame.font.SysFont(None, 70)
+        self.font_score = pygame.font.SysFont(None, 30)
+        self.font_time = pygame.font.SysFont(None, 50)
         self.score = 0
         self.clock = pygame.time.Clock()
-        self.word_list = ['apple','banana','orange','matsuo']
+        self.word_list = ['apple', 'banana', 'orange', 'matsuo']
         self.word = random.choice(self.word_list)
         
     def main_game(self):
         while True:
-            self.screen.fill((0,0,0))
+            self.screen.fill((0, 0, 0))
             pygame.display.set_caption('Game Mode')
             self.word_check()
-            susi_text = self.font_susi.render(self.word,True,(255,255,255))
-            score_text = self.font_score.render(str(self.score),True,(255,255,255))
-            time_text = self.font_time.render(str(self.getTime()//1000),True,(255,255,255))
-            self.screen.blit(score_text,(0,0))
-            self.screen.blit(susi_text,(0,120))
-            self.screen.blit(time_text,(400,0))
+            susi_text = self.font_susi.render(self.word, True, (255, 255, 255))
+            score_text = self.font_score.render(str(self.score), True, (255, 255, 255))
+            time_text = self.font_time.render(str(self.get_time()//1000), True, (255, 255, 255))
+            self.screen.blit(score_text, (0, 0))
+            self.screen.blit(susi_text, (0, 120))
+            self.screen.blit(time_text, (400, 0))
             pygame.display.update()
             self.time_check()
             for event in pygame.event.get():
@@ -43,20 +43,20 @@ class Main_game():
                     pygame.init()
                     sys.exit()
 
-    def word_cut(self,event):
+    def word_cut(self, event):
         if event.type == pygame.KEYDOWN:
             if self.word[0] == chr(event.key):
-                self.word= self.word[1:]
+                self.word = self.word[1:]
     
     def word_check(self):
         if len(self.word) < 1:
                 self.word = random.choice(self.word_list)
-                self.getScore()
+                self.get_score()
                 
-    def getScore(self):
-        self.score+=100
+    def get_score(self):
+        self.score += 100
     
-    def getTime(self):
+    def get_time(self):
         elapsed_time = pygame.time.get_ticks()
         return elapsed_time
     
