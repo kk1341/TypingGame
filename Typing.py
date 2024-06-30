@@ -21,7 +21,7 @@ class MainGame():
         self.font_time = pygame.font.SysFont(None, 50)
         self.score = 0
         self.clock = pygame.time.Clock()
-        self.word_list = ['apple', 'banana', 'orange', 'matsuo']
+        self.word_list = ['apple', 'banana', 'orange']
         self.word = random.choice(self.word_list)
         
     def main_game(self):
